@@ -16,6 +16,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.R.string;
@@ -37,7 +38,7 @@ public class HttpGetData extends AsyncTask<String, Void, String> {
 	private String areaID;
 	// ÉùÃ÷½Ó¿Ú
 	private HttpGetListener listener;
-	private JSONParser jsonParser=new JSONParser();
+	private JSONArrayParser jsonParser=new JSONArrayParser();
 
 	public HttpGetData() {
 
@@ -78,7 +79,7 @@ public class HttpGetData extends AsyncTask<String, Void, String> {
 
 		Log.d("request!", "starting");            
 		//Posting user data to script 
-		JSONObject json = jsonParser.makeHttpRequest(
+		JSONArray json = jsonParser.makeHttpRequest(
 		       url, "POST", mparams);
 
 		// full json response

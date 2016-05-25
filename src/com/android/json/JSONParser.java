@@ -72,9 +72,11 @@ import android.util.Log;
 			  String line = null;
 			  while ((line = reader.readLine()) != null) {
 				  sb.append(line + "\n");
+//				  System.out.println(line);
 			  }
 			  is.close();
 			  json = sb.toString();
+			  System.out.println("json:"+json);
 			  } catch (Exception e) {
 				  Log.e("Buffer Error", "Error converting result" + e.toString());
 			  }
