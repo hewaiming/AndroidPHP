@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Android JSON Login</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="label_daytable">日报</string>
+    <string name="title_activity_show_day_table">ShowDayTableActivity</string>
+
+    <string-array name="spingarr">
+        <item>一厂房一区</item>
+        <item>一厂房二区</item>
+        <item>一厂房三区</item>
+        <item>二厂房一区</item>
+        <item>二厂房二区</item>
+        <item>二厂房三区</item>
+    </string-array>
+
+</resources>
