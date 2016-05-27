@@ -38,7 +38,7 @@ public class HttpGetData extends AsyncTask<String, Void, String> {
 	private String areaID;
 	// 声明接口
 	private HttpGetListener listener;
-	private JSONArrayParser jsonParser=new JSONArrayParser();
+	private JSONArrayParser jsonParser = new JSONArrayParser();
 
 	public HttpGetData() {
 
@@ -48,11 +48,11 @@ public class HttpGetData extends AsyncTask<String, Void, String> {
 		this.url = url;
 	}
 
-	public HttpGetData(String url, HttpGetListener listener,Context context,String areaId) {
+	public HttpGetData(String url, HttpGetListener listener, Context context, String areaId) {
 		this.url = url;
 		this.listener = listener;
-		this.mContext=context;
-		this.areaID=areaId;
+		this.mContext = context;
+		this.areaID = areaId;
 	}
 
 	@Override
@@ -63,43 +63,21 @@ public class HttpGetData extends AsyncTask<String, Void, String> {
 		pDialog.setIndeterminate(false);
 		pDialog.setCancelable(true);
 		pDialog.show();
-		
+
 	}
 
 	@Override
 	protected String doInBackground(String... params) {
-	/*	// 首先创建一个客户端实例
-		mHttpClient = new DefaultHttpClient();
-		// 设置传递的方法
-		mHttpGet = new HttpGet(url);*/
-
 		// Building Parameters
 		List<NameValuePair> mparams = new ArrayList<NameValuePair>();
-		mparams.add(new BasicNameValuePair("areaID",areaID ));           
+		mparams.add(new BasicNameValuePair("areaID", areaID));
 
-		Log.d("request!", "starting");            
-		//Posting user data to script 
-		JSONArray json = jsonParser.makeHttpRequest(
-		       url, "POST", mparams);
+		JSONArray json = jsonParser.makeHttpRequest(url, "POST", mparams);
 
 		// full json response
-		Log.d("Login attempt", json.toString());		
-		
-		/*		
-		// 通过客户端进行发送
-		mHttpResponse = mHttpClient.execute(mHttpGet);
-		// 通过HttpResponse获取方法体
-		mHttpEntity = mHttpResponse.getEntity();
-		// 通过流获取具体的内容
-		is = mHttpEntity.getContent();
-		// 创建缓冲区
-		BufferedReader bReader = new BufferedReader(new InputStreamReader(is));
-		sb = new StringBuffer();
-		String line = null;
-		while ((line = bReader.readLine()) != null) {
-			sb.append(line);
-		}*/
-		return json.toString();		
+		Log.d("Login attempt", json.toString());
+
+		return json.toString();
 	}
 
 	@Override

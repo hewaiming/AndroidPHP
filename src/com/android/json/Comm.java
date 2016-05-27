@@ -41,10 +41,18 @@ public class Comm {
 				dayTable mday = new dayTable();
 				mday.setPotNo(jsonobj.getInt("PotNo"));
 				mday.setPotSt(jsonobj.getString("PotST"));
-				mday.setAeTime(jsonobj.getInt("AeTime"));			
-				mday.setAeV(jsonobj.getDouble("AeV"));
-				mday.setSetV(jsonobj.getDouble("SetV"));				
-				mday.setRealSetV(jsonobj.getDouble("RealSetV"));
+				if ((jsonobj.getString("PotST").toUpperCase()).equals("STOP")) {
+					mday.setAeTime(0);
+					mday.setAeV(0);
+					mday.setSetV(0);
+					mday.setRealSetV(0);
+				} else {
+					mday.setAeTime(jsonobj.getInt("AeTime"));
+					mday.setAeV(jsonobj.getDouble("AeV"));
+					mday.setSetV(jsonobj.getDouble("SetV"));
+					mday.setRealSetV(jsonobj.getDouble("RealSetV"));
+				}
+
 				mday.setDdate(jsonobj.getString("Ddate"));
 				listBean.add(mday);
 			}
