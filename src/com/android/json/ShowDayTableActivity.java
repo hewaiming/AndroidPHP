@@ -32,7 +32,8 @@ public class ShowDayTableActivity extends Activity implements HttpGetListener {
 		setContentView(R.layout.activity_show_day_table);
 		Intent intent = getIntent();
 		int areaID = intent.getIntExtra("areaID", 11);
-		mhttpgetdata = (HttpGetData) new HttpGetData(url, this, this, Integer.toString(areaID)).execute();
+		String Ddate=intent.getStringExtra("date");
+		mhttpgetdata = (HttpGetData) new HttpGetData(url, this, this, Integer.toString(areaID),Ddate).execute();
 		tv1 = (TextView) findViewById(R.id.tv1);
 		lv = (ListView) findViewById(R.id.lv);
 

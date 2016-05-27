@@ -25,37 +25,34 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class HttpGetData extends AsyncTask<String, Void, String> {
+public class HttpGetData_date extends AsyncTask<String, Void, String> {
 	private ProgressDialog pDialog;
 	private Context mContext;
 	private String url;
-	private String areaID;
-	private String ddate;
 	// 声明接口
 	private HttpGetListener listener;
-	private JSONArrayParser jsonParser = new JSONArrayParser();
+	private JSONArrayParserPost jsonParser = new JSONArrayParserPost();
 
-	public HttpGetData() {
+	public HttpGetData_date() {
 
 	}
 
-	public HttpGetData(String url) {
+	public HttpGetData_date(String url) {
 		this.url = url;
 	}
 
-	public HttpGetData(String url, HttpGetListener listener, Context context, String areaId,String ddate) {
+	public HttpGetData_date(String url, HttpGetListener listener, Context context) {
 		this.url = url;
 		this.listener = listener;
 		this.mContext = context;
-		this.areaID = areaId;
-		this.ddate=ddate;
+		
 	}
 
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
 		pDialog = new ProgressDialog(mContext);
-		pDialog.setMessage("搜索数据....");
+		pDialog.setMessage("下载数据....");
 		pDialog.setIndeterminate(false);
 		pDialog.setCancelable(true);
 		pDialog.show();
@@ -65,11 +62,9 @@ public class HttpGetData extends AsyncTask<String, Void, String> {
 	@Override
 	protected String doInBackground(String... params) {
 		// Building Parameters
-		List<NameValuePair> mparams = new ArrayList<NameValuePair>();
-		mparams.add(new BasicNameValuePair("areaID", areaID));
-		mparams.add(new BasicNameValuePair("ddate",ddate)); 
-
-		JSONArray json = jsonParser.makeHttpRequest(url, "POST", mparams);
+//		List<NameValuePair> mparams = new ArrayList<NameValuePair>();
+//		mparams.add(new BasicNameValuePair("date","" ));
+		JSONArray json = jsonParser.makeHttpRequest(url, "POST");		
 
 		// full json response
 		Log.d("Login attempt", json.toString());
