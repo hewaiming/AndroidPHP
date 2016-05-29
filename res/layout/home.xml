@@ -30,11 +30,24 @@
             android:layout_weight="1" />
     </LinearLayout>
 
+<Spinner
+    android:id="@+id/spinner_ENDdate"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_gravity="right"
+   />
+
     <Button
         android:id="@+id/dayTableBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="@string/label_daytable" />
+
+    <Button
+        android:id="@+id/PotVBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_potV" />
 
 </LinearLayout>

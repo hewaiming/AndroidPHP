@@ -1,4 +1,4 @@
-package com.android.json;
+package com.android.bean;
 
 public class dayTable {
 	private int PotNo;

@@ -15,5 +15,6 @@
         <item>二厂房二区</item>
         <item>二厂房三区</item>
     </string-array>
+        <string name="label_potV">槽压</string>
 
 </resources>

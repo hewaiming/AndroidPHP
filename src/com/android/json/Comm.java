@@ -7,6 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.android.bean.PotV;
+import com.android.bean.dayTable;
+
 public class Comm {
 
 	public List<JSONObject> JsonArrayToList(String data) {
@@ -28,7 +31,7 @@ public class Comm {
 		return lists;
 	}
 
-	public List<dayTable> JsonArrayToListBean(String data) {
+	public List<dayTable> JsonArrayToDayTableBean(String data) {
 
 		ArrayList<dayTable> listBean = null;
 		try {
@@ -52,8 +55,8 @@ public class Comm {
 					mday.setSetV(jsonobj.getDouble("SetV"));
 					mday.setRealSetV(jsonobj.getDouble("RealSetV"));
 				}
-				String mdata=jsonobj.getString("Ddate");
-				int location=mdata.indexOf(" ");				
+				String mdata = jsonobj.getString("Ddate");
+				int location = mdata.indexOf(" ");
 				mday.setDdate(mdata.substring(0, location));
 				listBean.add(mday);
 			}
@@ -63,7 +66,7 @@ public class Comm {
 		}
 		return listBean;
 	}
-	
+
 	public List<String> JsonArrayToDate(String data) {
 
 		ArrayList<String> listBean = null;
@@ -74,22 +77,8 @@ public class Comm {
 			System.out.println("jsonarray.length()---" + jsonarray.length());
 			for (int i = 0; i < jsonarray.length(); i++) {
 				JSONObject jsonobj = jsonarray.getJSONObject(i);
-//				dayTable mday = new dayTable();
-//				mday.setPotNo(jsonobj.getInt("PotNo"));
-//				mday.setPotSt(jsonobj.getString("PotST"));
-//				if ((jsonobj.getString("PotST").toUpperCase()).equals("STOP")) {
-//					mday.setAeTime(0);
-//					mday.setAeV(0);
-//					mday.setSetV(0);
-//					mday.setRealSetV(0);
-//				} else {
-//					mday.setAeTime(jsonobj.getInt("AeTime"));
-//					mday.setAeV(jsonobj.getDouble("AeV"));
-//					mday.setSetV(jsonobj.getDouble("SetV"));
-//					mday.setRealSetV(jsonobj.getDouble("RealSetV"));
-//				}
-				String mdata=jsonobj.getString("Ddate");
-				int location=mdata.indexOf(" ");				
+				String mdata = jsonobj.getString("Ddate");
+				int location = mdata.indexOf(" ");
 				listBean.add(mdata.substring(0, location));
 			}
 		} catch (JSONException e) {
@@ -98,5 +87,27 @@ public class Comm {
 		}
 		return listBean;
 	}
-	
+
+	public List<PotV> JsonArrayToPotVBean(String data) {
+
+		ArrayList<PotV> listBean = null;
+		try {
+			JSONArray jsonarray = new JSONArray(data);
+
+			listBean = new ArrayList<PotV>();
+			System.out.println("jsonarray.length()---" + jsonarray.length());
+			for (int i = 0; i < jsonarray.length(); i++) {
+				JSONObject jsonobj = jsonarray.getJSONObject(i);
+				PotV mPotV = new PotV();
+				mPotV.setDdate(jsonobj.getString("DDate"));
+				mPotV.setCur(jsonobj.getInt("Cur"));
+				mPotV.setPotV(jsonobj.getInt("PotNoV"));
+				listBean.add(mPotV);
+			}
+		} catch (JSONException e) {
+
+			e.printStackTrace();
+		}
+		return listBean;
+	}
 }

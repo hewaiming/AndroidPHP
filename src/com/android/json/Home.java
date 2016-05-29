@@ -52,15 +52,15 @@ public class Home extends Activity implements HttpGetListener {
 		@Override
 		public void onNothingSelected(AdapterView<?> parent) {
 			// TODO Auto-generated method stub
-			
-		}	
+
+		}
 
 	}
 
 	private int areaId;
-	private String seldate;
-	private Button dayTableBtn;
-	private Spinner mSpinner, dateSpinner;
+	private String seldate, enddate;
+	private Button dayTableBtn, PotVBtn;
+	private Spinner mSpinner, dateSpinner, ENDdateSpinner;
 	private List<String> dateBean = new ArrayList<String>();
 	private ArrayAdapter<String> adapter, adapterDate;
 	private String url = "http://125.64.59.11:8000/scgy/android/odbcPhP/getDate.php";
@@ -71,17 +71,12 @@ public class Home extends Activity implements HttpGetListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
-		mhttpgetdata_date = (HttpGetData_date) new HttpGetData_date(url,this,this).execute();
+		mhttpgetdata_date = (HttpGetData_date) new HttpGetData_date(url, this, this).execute();
 		dayTableBtn = (Button) findViewById(R.id.dayTableBtn);
+		PotVBtn = (Button) findViewById(R.id.PotVBtn);
 		mSpinner = (Spinner) findViewById(R.id.spinner_area);
 		dateSpinner = (Spinner) findViewById(R.id.spinner_date);
-		
-		/*adapterDate = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dateBean);
-		// 设置下拉列表的风格
-		adapterDate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-		dateSpinner.setAdapter(adapterDate);
-		dateSpinner.setVisibility(View.VISIBLE);*/
+		ENDdateSpinner = (Spinner) findViewById(R.id.spinner_ENDdate);
 
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, str);
 		// 设置下拉列表的风格
@@ -93,7 +88,7 @@ public class Home extends Activity implements HttpGetListener {
 		// 设置默认值
 		mSpinner.setVisibility(View.VISIBLE);
 
-		dayTableBtn.setOnClickListener(new OnClickListener() {			
+		dayTableBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -102,6 +97,19 @@ public class Home extends Activity implements HttpGetListener {
 				mIntent.putExtra("date", seldate);
 				startActivity(mIntent);
 			}
+		});
+		PotVBtn.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				Intent PotVIntent = new Intent(getApplicationContext(), PotVActivity.class);
+				PotVIntent.putExtra("PotNo", 2302);
+				PotVIntent.putExtra("begindate", seldate);
+				PotVIntent.putExtra("enddate", enddate);
+				startActivity(PotVIntent);
+				
+			}
+			
 		});
 	}
 
@@ -114,23 +122,37 @@ public class Home extends Activity implements HttpGetListener {
 		adapterDate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		dateSpinner.setAdapter(adapterDate);
+		ENDdateSpinner.setAdapter(adapterDate);
+		ENDdateSpinner.setVisibility(View.VISIBLE);
 		dateSpinner.setVisibility(View.VISIBLE);
-		seldate=dateSpinner.getItemAtPosition(0).toString();
+		enddate = ENDdateSpinner.getItemAtPosition(0).toString();
+		seldate = dateSpinner.getItemAtPosition(0).toString();
+		
 		dateSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-
+			
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				seldate=dateSpinner.getItemAtPosition(position).toString();
-				
-			}
+				seldate = dateSpinner.getItemAtPosition(position).toString();
 
+			}
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 				// TODO Auto-generated method stub
+
+			}
+		});	
+		ENDdateSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				enddate = ENDdateSpinner.getItemAtPosition(position).toString();
 				
 			}
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {			
+				
+			}			
 		});
-		;
-		
+
 	}
 }

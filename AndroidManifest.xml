@@ -22,6 +22,7 @@
         </activity>
         <activity android:name="com.android.json.Register" />
         <activity android:name="com.android.json.Home" />
+        <activity android:name="com.android.json.PotVActivity" />
         <activity
             android:name="com.android.json.ShowDayTableActivity"
             android:label="@string/title_activity_show_day_table" >
